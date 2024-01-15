@@ -23,27 +23,22 @@ public class Problem2 {
             Scanner sc = new Scanner(input);
             while (sc.hasNextLine()) {
                 pushData(data,sc.nextLine(),indices);
+
             }
-         //   count=AllowedGames(data,12,13,14);
 
             sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println(powerSet(data))
-        AllowedGames(data)
-        ;
-//       for (int item:indices){
-//           count+=item;
-//       }
-//        System.out.println(count);
+        for (int item:indices
+             ) {
+            count+=item;
+
+        }
+        System.out.println("Problem 2: Part1 : "+count);
+        System.out.println("Problem 2: Part2 : "+powerSet(data));
 
 
-        //System.out.println(strArray[1].indexOf("blue")-2);
-
-//        for(String s: strArray){
-//            System.out.println(s);
-//        }
     }
 
     static int AllowedGames(Map<Integer, ArrayList<int[]>> data){
