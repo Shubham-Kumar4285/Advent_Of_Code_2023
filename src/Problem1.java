@@ -27,20 +27,17 @@ public class Problem1 {
             Scanner sc = new Scanner(input);
             while (sc.hasNextLine()) {
                 temp=sc.nextLine();
-                temp=fixString(temp,dict);
-                temp=getNum(temp);
+                sum+=Integer.parseInt(getNum(temp));
 
-
-              //sum+=obj.newSol(temp,dict);
-              sum2+=Integer.parseInt(temp);
+                sum2+=obj.newSol(temp,dict);
             }
 
             sc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //System.out.println("Daddy of Code of Advent : "+sum);
-        System.out.println("GrandDaddy of Code of Advent  : "+sum2);
+        System.out.println("Problem 1 Part1 : "+sum);
+        System.out.println("Problem 1 Part2 : "+sum2);
 
     }
     static String getNum(String str){
@@ -67,6 +64,8 @@ public class Problem1 {
        return res;
 
     }
+
+    //function to fix string from left to right
     static String fixString(String str,Map<String,Integer> checkerList){
         String str2="";
 
@@ -117,6 +116,8 @@ public class Problem1 {
         return str2;
     }
 
+
+    //function to check from both left and right simultaneously
     int newSol(String str,Map<String,Integer> checkerList){
         int r=0,l=0;
         boolean rflag=false,lflag=false;
@@ -131,7 +132,7 @@ public class Problem1 {
                 String key = entry.getKey();
                 int val = entry.getValue();
                 if(str.charAt(i)==key.charAt(0)){
-                    System.out.println(str.charAt(i));
+//                    System.out.println(str.charAt(i));
 
                     for(int k=i;k<str.length();k++){
 

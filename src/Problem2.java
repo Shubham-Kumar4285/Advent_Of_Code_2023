@@ -30,7 +30,8 @@ public class Problem2 {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(powerSet(data))
+        //System.out.println(powerSet(data))
+        AllowedGames(data)
         ;
 //       for (int item:indices){
 //           count+=item;
@@ -45,21 +46,19 @@ public class Problem2 {
 //        }
     }
 
-    static int AllowedGames(Map<Integer, ArrayList<int[]>> data,int r,int g,int b){
+    static int AllowedGames(Map<Integer, ArrayList<int[]>> data){
         int sum=0;
         for (Map.Entry<Integer, ArrayList<int[]>> entry :data.entrySet()) {
             int key=entry.getKey();
 
             ArrayList<int[]> temp=entry.getValue();
             boolean possibleGame= true;
-            System.out.println(key+"         :         "+temp.size());
             for (int[] item:temp) {
-//                if(item[0]>r||item[1]>g||item[2]>b){
-//                    possibleGame=false;
-//                    break;
-//                }
-
+                System.out.print(key+" : "+item[0]+" "+item[1]+" "+item[2]);
+                }
+            System.out.print(":\n");
             }
+        System.out.println(" ");
 
 //            if(possibleGame){
 //                System.out.println(key);
@@ -67,7 +66,7 @@ public class Problem2 {
 //            }
 
 
-        }
+
 
         return sum;
     }
