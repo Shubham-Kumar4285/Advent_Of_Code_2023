@@ -1,10 +1,45 @@
 import java.io.File;
 import java.util.*;
+
+
+
+
+
+class newClass{
+    ArrayList<Integer> indices;
+    ArrayList<Integer> count;
+    ArrayList<customClass> collection;
+    public newClass(ArrayList<customClass> collection){
+        indices = new ArrayList<>();
+        count= new ArrayList<>();
+        this.collection=collection;
+        for (customClass obj:collection
+             ) {
+            indices.add(obj.index);
+            count.add(1);
+        }
+
+    }
+
+    public void showCount(){
+        System.out.println(count);
+    }
+    public void showIndices(){
+        System.out.println(indices);
+    }
+    public void PrintREs(){
+        int sum=0;
+        for (int item:count
+             ) {
+            sum+=item;
+        }
+        System.out.println(sum);
+    }
+}
 class customClass{
     int index ;
     ArrayList<Integer> wins;
     ArrayList<Integer> vals;
-    ArrayList<Integer> temp=new ArrayList<>();
 
 
     customClass(int index,ArrayList<Integer> wins,ArrayList<Integer> vals ){
@@ -13,6 +48,11 @@ class customClass{
         this.wins=wins;
 
     }
+
+    public customClass() {
+
+    }
+
     static int checker(ArrayList<customClass> arrayList){
         int sum=0;
         for (customClass obj:arrayList
@@ -38,53 +78,24 @@ class customClass{
 
         return sum;
     }
-    static void checker2(ArrayList<customClass> arrayList,ArrayList<Integer> temp){
-        ArrayList<Integer> temp2 = temp;
-        ArrayList<Integer> temp3 = new ArrayList<>(temp.size());
-        for (customClass obj:arrayList
-        ) {
-            temp.add(obj.index);
-            temp3.add(1);
+    static void checker2(ArrayList<customClass> arrayList,ArrayList<Integer> indices,ArrayList<Integer> count,int begin,int end){
+
+
+        for(int i=begin;i<=end;i++){
+            int matches =matcher(arrayList,i,indices);
+            //System.out.println(matches);
+            if(matches>0){
+                for (int j=i+1;j<=i+matches;j++){
+                    count.set(j,count.get(j)+1);
+
+                }
+
+                checker2(arrayList,indices,count,i+1,i+matches);
+
+
+            }
 
         }
-
-        for(int i=0;i<temp.size();i++){
-            int count = temp.get(i);
-            if(count/temp.get(i)==0){
-                continue;
-            }else {
-
-                int bound = matcher(arrayList, i, temp);
-                for (int k = i + 1; k <= bound; k++) {
-                    temp3.set(k, temp3.get(k) + 1);
-                }
-                //System.out.println(temp3);
-                int key=i;
-                for (int j=key;j<=matcher(arrayList,key,temp);j++){
-                    int count2=temp3.get(j);
-                    while(count2>=2){
-                        int bound2 = matcher(arrayList, j, temp);
-                        for (int k = i + 1; k <= bound2; k++) {
-                            temp3.set(k, temp3.get(k) + 1);
-                        }
-                        count2--;
-
-                    }
-                }
-
-                }
-            System.out.println(temp3);
-
-
-
-            break;
-
-
-        }
-
-
-
-
 
 
 
@@ -108,7 +119,7 @@ class customClass{
     static void result2(ArrayList<Integer> temp){
 
 
-        //System.out.println(temp.size());
+        System.out.println(temp);
 
         }
     }
@@ -133,9 +144,17 @@ public class Problem4 {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
       //  System.out.println(customClass.checker(collection));
-        customClass.checker2(collection,collection.get(0).temp);
-        customClass.result2(collection.get(0).temp);
+
+
+        newClass obj = new newClass(collection);
+        customClass.checker2(collection,obj.indices,obj.count,0,obj.indices.size()-1);
+        obj.showIndices();
+        obj.showCount();
+        obj.PrintREs();
+
+
 
 
 
