@@ -56,12 +56,13 @@ public class Problem5 {
 //        System.out.println(range2.intersectionWith(range));
 
         //working--
-        System.out.println(obj.seeds);
-        System.out.println(obj.mappings);
+        //System.out.println(obj.seeds);
+        //System.out.println(obj.mappings);
         printData2(obj,0,0,obj.seeds.size());
         //System.out.println(obj.resSeeds);
-        System.out.println(obj.seeds);
+        //System.out.println(obj.seeds);
         //System.out.println(obj.resSeeds);
+        System.out.print("Part 2 : ");
         obj.result();
 
 
@@ -356,9 +357,9 @@ public class Problem5 {
             ArrayList<Long> temp=new ArrayList<>();
             temp.add(lb);
             temp.add(ub);
-            System.out.println("********************");
-            System.out.println(obj.seeds.get(seedIndex));
-            System.out.println(temp);
+            //System.out.println("********************");
+            //System.out.println(obj.seeds.get(seedIndex));
+            //System.out.println(temp);
             obj.seeds.set(seedIndex,temp);
 
             printData2(obj,0,seedIndex+1,--count);
