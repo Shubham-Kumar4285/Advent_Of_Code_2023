@@ -29,8 +29,7 @@ public class Problem6 {
 //        }
        Problem6 obj=new Problem6();
         fetchData(ls,obj);
-//        System.out.println(obj.times);
-//        System.out.println(obj.totalDistance);
+
         part1(obj);
 
 //        String str2 = obj.times.stream().map(i->i.toString()).collect(Collectors.joining(""));
@@ -72,6 +71,7 @@ public class Problem6 {
         }
         return ways;
     }
+
     static void part1(Problem6 obj){
         int prod=1;
         for(int i=0;i<obj.times.size();i++){
