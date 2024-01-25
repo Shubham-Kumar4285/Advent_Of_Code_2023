@@ -38,7 +38,7 @@ public class Problem9 {
     }
 
 
-    static void calculateIteration(List<Integer> ls,List<Integer> res){
+    static void calculateIteration(List<Integer> ls,List<Integer> res,List<Integer> res2){
         List<List<Integer>> tempdata= new ArrayList<>();
         tempdata.add(ls);
         List<Integer> temp= new ArrayList<>(List.copyOf(ls));
@@ -52,7 +52,7 @@ public class Problem9 {
             temp.clear();
             temp.addAll(newList);
         }
-        //reverse logic
+        //reverse logic -forward
         //System.out.println(tempdata);
         for(int i=tempdata.size()-2;i>-1;i--){
             int nextLast=tempdata.get(i+1).size()-1;
@@ -61,18 +61,29 @@ public class Problem9 {
         }
         res.add(tempdata.get(0).get(tempdata.get(0).size()-1));
 
+        //reverse Logic -backwards
+        for(int i=tempdata.size()-2;i>-1;i--){
+            int newData=tempdata.get(i).get(0)-tempdata.get(i+1).get(0);
+            tempdata.get(i).add(0,newData);
+        }
+        res2.add(tempdata.get(0).get(0));
+        //System.out.println(tempdata);
+
 
     }
     void Part1(){
         List<Integer> res = new ArrayList<>();
+        List<Integer> res2 = new ArrayList<>();
         for (List<Integer> ls:data
              ) {
-            calculateIteration(ls,res);
+            calculateIteration(ls,res,res2);
         }
         //result
         //System.out.println(res);
         int sum = res.stream().mapToInt(Integer::intValue).sum();
+        int sum2 = res2.stream().mapToInt(Integer::intValue).sum();
         System.out.println("Part 1 : "+sum);
+        System.out.println("Part 2 : "+sum2);
     }
 
 }
