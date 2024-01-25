@@ -197,8 +197,10 @@ public class Problem7 {
         int currentMax = Collections.max(finalType.get(str));
         List<Node> temp = collection.stream().filter(part2 -> part2.str == str).toList();
         List<Integer> counts = new ArrayList<>();
+
         for(Character c:temp.get(0).distinctCharacters){
             counts.add((int)str.chars().filter(value -> value==c).count());
+
         }
 //        System.out.println("*************");
 //        System.out.println(str);
@@ -212,16 +214,53 @@ public class Problem7 {
                 if (counts.size() != 1) {
 
                     Collections.sort(counts);
+//                    System.out.println("*****************");
 //                    System.out.println(counts);
 //                    System.out.println(str);
                     currentMax = currentMax + counts.get(counts.size() - 2);
                     //System.out.println(currentMax);
+//                    System.out.println("*****************");
+
                 }
             } else {
                 int offset = (int) str.chars().filter(value -> value == 'J').count();
                 currentMax = currentMax + offset;
+//                System.out.println("*****************");
+//                System.out.println(counts);
+//                System.out.println(str);
+//                System.out.println(currentMax);
+//                System.out.println("*****************");
             }
         }
+        //update condition for case j
+//        System.out.println("*************");
+//        System.out.println(str);
+//        System.out.println(counts);
+//        System.out.println(currentMax);
+//        System.out.println(temp.get(0).distinctCharacters);
+        if(currentChar=='J'){
+            if(counts.size()!=1){
+            currentChar=temp.get(0).distinctCharacters.stream().filter(character -> character!='J').toList().get(0);
+            }
+            String newStr=str.replace("J", String.valueOf(currentChar));
+        }
+        String newStr=str.replace("J", String.valueOf(currentChar));
+        //System.out.println(newStr);
+        List<Character> newDistinctCharacter=newStr.chars().mapToObj(c->(char)c).distinct().toList();
+        List<Integer> newCounts=new ArrayList<>();
+        //System.out.println(newDistinctCharacter);
+        for (Character item:newDistinctCharacter
+             ) {
+            newCounts.add((int)newStr.chars().filter(value -> value==item).count());
+        }
+//        System.out.println(newCounts);
+//
+//        System.out.println("*************");
+        //new checker
+
+
+
+
 
         //switch = 0-five ,1-four of kind  ,2-full house ,3-three kind ,4-two pair , 5-one pair ,6-high card
 
@@ -233,7 +272,7 @@ public class Problem7 {
                 return 1;
             }
             case 3 -> {
-                if (counts.contains(2)) {
+                if (newCounts.contains(2)) {
                     return 2;
 
                 } else {
@@ -241,7 +280,7 @@ public class Problem7 {
                 }
             }
             case 2 -> {
-                int tempCount=Collections.frequency(counts,2);
+                int tempCount=Collections.frequency(newCounts,2);
                 if (tempCount==2) {
                     return 4;
                 } else {
@@ -286,7 +325,7 @@ public class Problem7 {
         typesList.add(twoPairhand);
         typesList.add(onepairhand);
         typesList.add(Highhand);
-        //System.out.println(typesList);
+
         for (List<String> ls:typesList
              ) {
 
@@ -312,14 +351,15 @@ public class Problem7 {
              ) {
             finalRes.addAll(ls);
         }
-        System.out.println(finalRes);
+        //System.out.println(finalRes);
         Long rank= (long) finalRes.size();
 
         Long res=0L;
-        for (String item:finalRes
-        ) {
+        for (List<String> item1:typesList
+        ) { for(String item:item1){
             res+=bidMap.get(item)*rank;
             rank--;
+        }
 
         }
 
