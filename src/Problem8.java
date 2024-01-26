@@ -28,6 +28,7 @@ public class Problem8 {
         }
         //System.out.println(obj.rawData);
         fetchData(obj);
+        obj.part1();
         //System.out.println(obj.instruction);
 
     }
@@ -42,7 +43,7 @@ public class Problem8 {
            i++;
        }
 
-       System.out.println(str);
+        //System.out.println(str);
        obj.instruction= String.valueOf(str);
        i++;
        while(i<obj.rawData.size()){
@@ -53,18 +54,42 @@ public class Problem8 {
            obj.data.put(temp.get(0),toAdd);
            i++;
        }
-        System.out.println(obj.data);
+        //System.out.println(obj.data);
 
 
     }
     void part1(){
-        String start ="AAA";
+        String current ="AAA";
         String end = "ZZZ";
         boolean flag=false;
         int count =0;
+        int index=0;
         while(!flag){
 
-        }
-    }
 
+            if(instruction.charAt(index)=='L'){
+                current=data.get(current).get(0);
+                count++;
+            }
+            else {
+                current=data.get(current).get(1);
+                count++;
+            }
+
+
+            index++;
+            if(current.equals(end)){
+            flag=true;
+
+            }
+            if(index>=instruction.length()){
+            index=0;
+            }
+
+
+        }
+        System.out.println("Part 1 : "+count);
+    }
 }
+
+
