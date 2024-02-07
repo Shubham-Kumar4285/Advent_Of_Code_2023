@@ -43,7 +43,7 @@ enum elements{
 
 public class Problem10 {
 
-    CustomPolygon polygon;
+
     int part1=0;
     List<List<Character>> area =new ArrayList<>();
     ArrayList<ArrayList<Character>> alteredArea =new ArrayList<>();
@@ -143,112 +143,7 @@ public class Problem10 {
         prod+=multiplier;
         float b=loopPoints.size();
         float area=prod/2;
-        System.out.println("Part 2:"+(Math.abs(area)-(b /2)+1));
-
-    }
-
-    void insidePolygon(){
-        int count=0;
-        for (int i = 0; i < area2.size(); i++) {
-            if(map2.containsKey(i)){
-                List<points> pts=map2.get(i);
-
-                for (int j = 0; j < area2.get(i).size(); j++) {
-                   if(!pts.contains(area2.get(i).get(j))){
-                            int hitCount=0;
-                       for (int k = j; k < area2.get(i).size(); k++) {
-
-                           if(pts.contains(area2.get(i).get(k))){
-                               hitCount++;
-                           }
-
-                       }
-
-                       if(hitCount%2==1){
-                           System.out.println(i+" "+j+" : "+area2.get(i).get(j));
-                           count++;
-                       }
-
-                   }
-
-                }
-            }
-        }
-        System.out.println(count);
-
-
-    }
-
-
-    int  logicPart2(int row,List<points> ls) {
-        int count = 0;
-        int currIndex = 0;
-        int nextIndex = 1;
-        while (nextIndex < ls.size()) {
-            points current = ls.get(currIndex);
-            points next = ls.get(nextIndex);
-            if (ls.size() > 2) {
-                // System.out.println("RAeched here");
-                for (int i = nextIndex + 1; i < ls.size(); i++) {
-                    if (area2.get(row).get(next.y + 1) != ls.get(i)) {
-                        break;
-                    } else {
-                        nextIndex++;
-                        next = ls.get(nextIndex);
-                    }
-                }
-                //System.out.println(currIndex+ " " + nextIndex);
-                //System.out.println(current.y + " " + next.y);
-
-                if (ls.size() - 1 == nextIndex && currIndex==0) {
-                    return 0;
-
-                } else {
-                    boolean flag=false;
-                    int areaIndex=ls.get(currIndex).y;
-                    for (int i = currIndex; i <=nextIndex; i++) {
-                        if(ls.get(i)!=area2.get(row).get(areaIndex)){
-                            flag=true;
-                            break;
-                        }else{
-                            areaIndex++;
-                        }
-                    }
-                    if(flag) {
-                        count += next.y - current.y - 1;
-                        currIndex = nextIndex + 1;
-                        nextIndex = nextIndex + 2;
-                    }else{
-                        currIndex = nextIndex + 1;
-                        nextIndex = nextIndex + 2;
-
-                    }
-
-                }
-            }
-        }
-
-
-        return count;
-    }
-    private int calculateOffset(List<points> branch,int row) {
-        if(branch.size()==2){
-            return 0;
-        }else{
-            int offset=0;
-            int branchIndex=1;
-            for (int i=branch.get(0).y+1;i<branch.get(branch.size()-1).y;i++){
-                if(area2.get(row).get(i)!=branch.get(branchIndex)){
-                    offset+=1;
-                    branchIndex++;
-                }else{
-                    branchIndex++;
-                }
-            }
-            return offset;
-        }
-
-
+        System.out.println("Part 2 : "+(Math.abs(area)-(b /2)+1));
 
     }
 
